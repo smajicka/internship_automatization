@@ -1,0 +1,28 @@
+{
+  "dependencies": {
+    "chromedriver": "^91.0.0",
+    "selenium-webdriver": "^4.0.0-beta.3"
+  },
+  "name": "user",
+  "version": "1.0.0",
+  "main": "index.js",
+  "devDependencies": {
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "@types/jest": "^26.0.23",
+    "@types/node": "^15.12.1",
+    "@types/selenium-webdriver": "^4.0.13",
+    "babel-jest": "^27.0.2",
+    "jest": "^27.0.4",
+    "jets": "^0.14.1",
+    "ts-jest": "^27.0.2",
+    "typescript": "^4.3.2"
+  },
+  "scripts": {
+    "test": "jest --config ./jest.config.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
