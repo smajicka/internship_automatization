@@ -1,9 +1,8 @@
 import { By, WebElement } from "selenium-webdriver";
-import {driver} from "../driver-factory"
-import {menu} from "../objects/menu"
-import searchbar from "../objects/searchbar";
+import {driver} from "../../driver-factory"
 
-export class homepage {
+
+export class Homepage {
 
 
     url = "http://automationpractice.com/index.php";
@@ -13,5 +12,3 @@ export class homepage {
     bestseller = driver.findElement(By.xpath("/html/body/div/div[2]/div/div[2]/div/ul/li[2]/a"));
     itemBestseller = driver.findElement(By.xpath("/html/body/div/div[2]/div/div[2]/div/ul/li[2]/a"));
 }
-
-export default new homepage ();

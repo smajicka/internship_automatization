@@ -1,7 +1,7 @@
 import { By } from "selenium-webdriver";
-import {driver} from "../driver-factory";
+import {driver} from "../../driver-factory";
 
-class registrationpage  {
+export class Registrationpage  {
 
     url = "http://automationpractice.com/index.php?controller=authentication&back=my-account#account-creation"
     genderMale = driver.findElement(By.id('id_gender1'));
@@ -25,4 +25,3 @@ class registrationpage  {
     mobilePhone = driver.findElement(By.id("phone_mobile"));
     registerButton = driver.findElement(By.id("submitAccount"))
 }
-export default new registrationpage();
