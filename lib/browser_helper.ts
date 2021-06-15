@@ -1,38 +1,43 @@
 import {driver} from "../driver-factory";
-import {Key, WebElementPromise} from "selenium-webdriver"
+import {Key, until} from "selenium-webdriver"
+import { ElementLocator } from "./element_locator";
+import { elementIsNotVisible } from "selenium-webdriver/lib/until";
+
 
 export class BrowserHelper{
 
+ 
 async sleep(number){
+  ElementLocator
   return new Promise((resolve) => {
     setTimeout (resolve, number);
   });
 }
 
-async click (WebElement) {
-  return WebElement.click();
+async click (elementLocator: ElementLocator) {
+  return (await elementLocator.getElement()).click();
 } 
 
-async enterText(WebElement, string){
-  await WebElement.sendKeys(string);
-  let result = await WebElement.getText();
-  let test = expect(result).toEqual(string);
-  return test; 
+async HoverOver (elementLocator: ElementLocator) {
+  return driver.actions().mouseMove(await elementLocator.getElement());
+}
+
+ 
+ async enter(elementLocator: ElementLocator){
+  return await (await elementLocator.getElement()).sendKeys(Key.ENTER);
+    }
+
+
+async enterText(elementLocator: ElementLocator, text: any){
+  return await (await elementLocator.getElement()).sendKeys(text);
+  
   }
 
-async hoverOver(WebElement, ){
-
-
-}
-async moveDownTo(WebElement){
-  const actions = driver.actions({async: true});
-  actions.move(WebElement);
-}
-
-getText(WebElement){
-return WebElement.getText();
-}
-
+async getValue(elementLocator : ElementLocator){
+  (await elementLocator.getElement()).getAttribute("value");
+  return  
+  }
+  
 async setToPage (url){
   this.sleep(10000)
   return driver.get(url);
@@ -57,30 +62,18 @@ async generateName (){
     return (first + name );}
 
     
-     getRandomInt(min, max) {
+async getRandomInt(min, max) {
       min = Math.ceil(min);
       max = Math.floor(max);
       return Math.floor(Math.random() * (max - min + 1)) + min;}
 
-async selector(WebElement, period){
+async selector(elementLocator : ElementLocator, option){
   var value;
-  if (period == "day"){
-     var min = 1;
-     var max = 31
-  } 
-  else if (period == "month"){
-    var min = 1;
-    var max = 12;
-  }
-  else if (period =="year"){
-    var min = 18;
-    var max = 100;
-  }
-  else if (period == "state"){
+  if (option == "state"){
     var min = 1;
     var max = 50;
   }
-  else if (period == "coutry"){
+  else if (option == "coutry"){
     value = 1;
   }
 
@@ -89,15 +82,12 @@ async selector(WebElement, period){
   var iterator = 0;
   while( value<iterator){
     driver.wait;
-    await WebElement.sendKeys(Key.ARROW_DOWN)
+    await(await elementLocator.getElement()).sendKeys(Key.ARROW_DOWN);
     iterator++;
   }
-  driver.wait;
-  await WebElement.sendKeys(Key.ENTER);
-  driver.wait;
-  const enteredValue = (await WebElement).getText();
-  expect (enteredValue).toEqual("value");
-}
+ 
+  (await elementLocator.getElement()).sendKeys(Key.ENTER);
+  }
 
 async generateZip (){
     let numbers = '0123456789';
@@ -127,6 +117,28 @@ async generateZip (){
         address += chars[Math.floor(Math.random() * chars.length)];
     }
       return (first + " " + address + " 11");}
+   
+    async waitUntilElementLocated(elementLocator: ElementLocator, waitTime = 5000) {
+        return driver.wait(until.elementLocated(elementLocator.getLocator()), waitTime).catch(async function (error: any) {
+          console.error(error);
+          console.error("For: " + elementLocator.getLocator());
+          return false;
+        });
+      }
+          
+   
+    async waitUntilElementIsVisible(elementLocator: ElementLocator, waitTime = 10000) {
+        await this.waitUntilElementLocated(elementLocator, waitTime==10000 ? 5000 : waitTime );
+        return driver.wait(until.elementIsVisible(await elementLocator.getElement()), waitTime).catch(async function (error: any) {
+          console.error(error);
+          console.error("For:" + elementLocator.getLocator());
+          return false;
+        });
+      }
 
+async maximizeWindow(){
+  return await driver.manage().window().maximize();
 }
 
+
+}

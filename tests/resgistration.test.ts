@@ -1,9 +1,11 @@
 import {describe, expect, it, beforeAll } from "@jest/globals";
-import {By, until, WebElementCondition} from "selenium-webdriver";
+import { until} from "selenium-webdriver";
 import {driver} from "../driver-factory";
 import {BrowserHelper} from "../lib/browser_helper";
 import set from "../config"
 import {PageObjectFactory} from "../lib/pages/page_factory";
+import { SSL_OP_EPHEMERAL_RSA } from "constants";
+
 
 
 let browser = new BrowserHelper();
@@ -16,111 +18,91 @@ jest.setTimeout(70000);
 
 beforeAll ( async () =>{
    await browser.setToPage(set.url);
+   await browser.maximizeWindow();
 });
 
 
 describe('Click Sign in button at the homepage', () => {
    it('Sign in and Registration forms dispayed', async () => {
-     await driver.wait(until.elementIsVisible(homepage.signButton),40000);
+     await driver.wait(browser.waitUntilElementIsVisible(homepage.signButton,40000));
      await browser.click(homepage.signButton);
-     await driver.wait(until.urlIs(my_accountpage.url));
-     const myaccountUrl = await driver.getCurrentUrl();
-     expect(myaccountUrl).toEqual(my_accountpage.url);    
+          
   })
 })
 
 describe('Enter e-mail to start the registration process ', () => {
    it('E-mail is sucessfully entered', async () => {
-     await driver.wait(until.elementIsVisible(my_accountpage.enterMail), 40000);
-     await browser.enterText(my_accountpage.enterMail, browser.generateMail()); })
+      await driver.wait(browser.waitUntilElementIsVisible(my_accountpage.enterMail,40000));
+      await browser.enterText(my_accountpage.enterMail, await browser.generateMail()); })
    })
 
 describe('Click on the Register button', () => {
    it('Registration page is displayed', async () => {
      await browser.click(my_accountpage.createAccount);
-     await driver.wait(until.urlIs(registrationpage.url));
-     const registrationpageUrl = driver.getCurrentUrl();
-     await expect (registrationpageUrl).toEqual(registrationpage.url);
-  })
+        })
 })
 
 describe('Filling in the registration form', () => {
    it('Title is chosen', async () => {
-      await driver.wait(until.elementIsVisible(registrationpage.genderFemale));
+      await browser.sleep(40000);
+      await driver.wait(browser.waitUntilElementIsVisible(registrationpage.genderFemale,4000));
       await browser.click(registrationpage.genderFemale);
   })
 
   it('First name is entered', async () => {
    await browser.click(registrationpage.firstName);
-   await browser.enterText(registrationpage.firstName, browser.generateName()); })
+   await browser.enterText(registrationpage.firstName, await browser.generateName()); })
    
 })
 it('Last name is entered', async () => {
    await browser.click(registrationpage.lastName);
-   await browser.enterText(registrationpage.lastName, browser.generateName());
+   await browser.enterText(registrationpage.lastName, await browser.generateName());
    })
-
-it('Day of birthdate is selected', async () => {
-   await browser.click(registrationpage.birthDateDaySelect);
-   await browser.selector(registrationpage.birthDateDay, "day"); 
    
-})
-it('Month of birthdate is selected', async () => {
-   await browser.click(registrationpage.birthDateMonthSelect);
-   driver.wait;
-   await browser.selector(registrationpage.birthDateMonth, "month");
- })
-
-it("Year of birthdate is selected", async () => {
-   await browser.click(registrationpage.birthDateYearSelect);
-   driver.wait;
-   await browser.selector(registrationpage.birthDateYear, "year");
-})
+it('Password is sucesfully entered', async () => {
+    await driver.wait(browser.waitUntilElementIsVisible(registrationpage.password,40000));
+    await browser.enterText(registrationpage.password, await browser.generateName()); })
+   
 
 it('Adress is entered', async () => {
    await browser.click(registrationpage.address);
-   driver.wait;
-   await browser.enterText(registrationpage.address, browser.generateAdress());
-   driver.wait;
-})
+   await browser.enterText(registrationpage.address, await browser.generateAdress());
+   })
 
 it('City is entered', async () => {
    await browser.click(registrationpage.city);
-   driver.wait;
-   await browser.enterText(registrationpage.city, browser.generateName());
-   driver.wait;
-})
+   await browser.enterText(registrationpage.city, await browser.generateName());
+   })
 
 it('State is selected', async () => {
-   await browser.click(registrationpage.stateSelect);
-   driver.wait;
+   await driver.wait(browser.waitUntilElementIsVisible(registrationpage.state,40000));
+   await browser.click(registrationpage.state);
+   await browser.sleep (5000);
    await browser.selector(registrationpage.state, "state");
-   driver.wait;
+   
 })
 it('Zip code is entered', async () => {
    await browser.click(registrationpage.zipCode)
-   driver.wait;
-   await browser.enterText(registrationpage.zipCode, browser.generateZip());
-   driver.wait;
+   await browser.enterText(registrationpage.zipCode, await browser.generateZip());
+   
 })
 it('Country is selected', async () => {
-   await browser.click(registrationpage.countrySelect);
-   driver.wait;
-   await browser.selector(registrationpage.county, "county");
-   driver.wait;
-})
+   await driver.wait(browser.waitUntilElementIsVisible(registrationpage.country,40000));
+   await browser.click(registrationpage.country);
+   await browser.selector(registrationpage.country, "country");
+   })
 
 it('Mobile number is entered', async () => {
-   await browser.enterText(registrationpage.mobilePhone, browser.generateMobile());
-   driver.wait;
+   await browser.enterText(registrationpage.mobilePhone, await browser.generateMobile());
+   
 })
+
 it('Registration button clicked', async () => {
    await browser.click(registrationpage.registerButton);
-   driver.wait;
-  const newUrl = (await driver).getCurrentUrl();
-  expect (newUrl).toEqual(my_accountpage.url);
 })
 
-
-
+afterAll ( async() => {
+   await driver.sleep(10000);
+   await driver.quit();
+} )
 
