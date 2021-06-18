@@ -2,7 +2,6 @@ import { ElementLocator } from "../element_locator";
 
 export class Registrationpage  {
 
-    url = "http://automationpractice.com/index.php?controller=authentication&back=my-account#account-creation"
     genderMale = new ElementLocator("id","id_gender1");
     genderFemale = new ElementLocator("id","id_gender2");
     firstName = new ElementLocator("id","customer_firstname");
@@ -10,7 +9,8 @@ export class Registrationpage  {
     password = new ElementLocator("id","passwd");
     address= new ElementLocator("id","address1");
     city = new ElementLocator("id","city");
-    state = new ElementLocator("id","id_state");
+    state = new ElementLocator ("id","id_state");
+    stateOption = new ElementLocator("css", "#id_state > option:nth-child(2)");
     zipCode = new ElementLocator("id","postcode");
     country  = new ElementLocator("id","id_country");
     mobilePhone = new ElementLocator("id","phone_mobile");

@@ -1,1 +1,8 @@
 node_modules
+package-lock.json
+package.json
+.node_repl_history
+.vscode
+.gitconfig
+yarn-error.log
+lib/store_data.cvs
