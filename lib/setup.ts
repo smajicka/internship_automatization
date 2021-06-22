@@ -1,33 +1,39 @@
-import {Builder, WebDriver, Capabilities } from "selenium-webdriver";
+import {Builder, WebDriver} from "selenium-webdriver";
 import "selenium-webdriver/chrome"
 import 'chromedriver';
-import set from "../config";
-
 
 export class Setup{
 
-    private static instance: Setup;
+private static instance: Setup;
 
-    url: string;
-    browser: string;
-    browserVersion: string;
-    driver: WebDriver = null;
-    enviroment : Enviroment;
+url: string;
+browser: string;
+driver: WebDriver = null; 
 
-    constructor (){
-    this.url = this.enviroment.url;
-    this.browser = this.enviroment.browser;
-    this.newDriver();
-    jest.setTimeout(70000);
-    }
+constructor (){
+const fs = require ("fs");
+const yaml = require ("js-yaml");
+const create = yaml.load(fs.readFileSync("./enviroment.yaml"))
 
-    public static getInstance(): Setup {
-        return Setup.instance;}
+this.url = create.url;
+this.browser = create.browser;
+this.newDriver();
+jest.setTimeout(80000);
+}
 
-    private newDriver() {
-    return this.driver = new Builder().forBrowser(this.browser).build();
-    }    
+public static getInstance(): Setup {
+if(!Setup.instance) {Setup.instance = new Setup();}
 
+return Setup.instance;}
 
-            
+private newDriver() : void  {
+if(this.driver==null){
+this.driver = new Builder().forBrowser(this.browser).build();
+this.driver.manage().window().maximize();}
+}    
+
+quitDriver() : void {
+this.driver.quit();
+}
+
 }

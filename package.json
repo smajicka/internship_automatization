@@ -1,15 +1,23 @@
 {
+  "name": "user",
+  "version": "1.0.0",
+  "description": "Online store automatization",
+  "main": "index.js",
+  "author": "Selma Smajic",
+  "license": "ISC",
   "dependencies": {
     "@jest/globals": "^27.0.3",
     "chromedriver": "^91.0.0",
+    "csv-writer": "^1.6.0",
+    "file-system": "^1.2.2",
+    "js-yaml": "^3.14.1",
     "read-excel-file": "^5.1.0",
     "selenium-webdriver": "^4.0.0-beta.3",
     "ts-xlsx": "^0.0.11",
+    "url-regex": "^5.0.0",
+    "yaml": "^1.10.2",
     "yarn": "^1.22.10"
   },
-  "name": "user",
-  "version": "1.0.0",
-  "main": "index.js",
   "devDependencies": {
     "@babel/core": "^7.14.3",
     "@babel/plugin-transform-typescript": "^7.14.6",
@@ -35,9 +43,7 @@
   },
   "scripts": {
     "test": "jest --config ./jest.config.js"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "description": ""
+  }
+  
+  
 }

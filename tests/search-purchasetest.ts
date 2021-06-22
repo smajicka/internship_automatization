@@ -1,48 +1,49 @@
-import {driver} from "../driver-factory";
-import {BrowserHelper} from "../lib/browser_helper";
-import set from "../config"
-import { PageObjectFactory} from "../lib/pages/pageobjectfactory";
+import {describe, it, beforeAll } from "@jest/globals";
+import {BrowserHelper} from "../lib/browser-helper";
+import {Setup} from "../lib/setup";
+import {PageObjectFactory} from "../lib/pages/page-object-factory";
 
 let browser = new BrowserHelper();
 let pageobj = new  PageObjectFactory();
 let homepage = pageobj.getHomePage();
-let my_accountpage = pageobj.getAccountPage();
+let myaccountpage = pageobj.getAccountPage();
 let purchase = pageobj.getPurchasePage();
 let search = pageobj.getSearchResults ();
-
-jest.setTimeout(70000);
+let set =  Setup.getInstance();
 
 beforeAll ( async () =>{
 await browser.setToPage(set.url);
-await browser.maximizeWindow();
 });
 
 describe('Click Sign in button at the homepage', () => {
 it('Sign in and Registration forms dispayed', async () => {
 await  browser.waitUntilElementIsVisible(homepage.signButton,40000);
-await browser.click(homepage.signButton);})
+await browser.click(homepage.signButton);
+await browser.checkUrl(myaccountpage.urlAuthentication);})
 })
 
 describe('Enter valid data to sign in', () => {
 it('E-mail is sucessfully entered', async () => {
-await browser.waitUntilElementIsVisible(my_accountpage.enterMailOld,40000);
-await browser.enterText(my_accountpage.enterMailOld, "selma.smajic99@gmail.com"); 
+await browser.waitUntilElementIsVisible(myaccountpage.enterMailOld,40000);
+await browser.enterText(myaccountpage.enterMailOld, "selma.smajic99@gmail.com"); 
+await browser.checkText(myaccountpage.enterMail);
 })
 
 it('Password is sucessfully entered', async () => {
-await browser.waitUntilElementIsVisible(my_accountpage.enterPass,40000);
-await browser.enterText(my_accountpage.enterPass, "pr@ksa27");})
+await browser.waitUntilElementIsVisible(myaccountpage.enterPass,40000);
+await browser.enterText(myaccountpage.enterPass, "pr@ksa27");})
 })
 
 describe('Click on the Sign in button', () => {
 it('User account page is displayed', async () => {
-await browser.click(my_accountpage.signIn);})
+await browser.click(myaccountpage.signIn);
+await browser.checkUrl(myaccountpage.url)})
 })
 
 describe('Add item to cart using searchbar', () => {
 it('User is redirected to the homepage', async () => {
-await browser.waitUntilElementIsVisible(my_accountpage.home,4000);
-await browser.click(my_accountpage.home);
+await browser.waitUntilElementIsVisible(myaccountpage.home,4000);
+await browser.click(myaccountpage.home);
 })
 
 it('Enter item you want to find in the search bar', async () => {
@@ -59,6 +60,7 @@ await browser.hoverOver(search.blouse)
 it('Add item to the cart', async () => {
 await browser.waitUntilElementIsVisible(purchase.addToCartSearch,40000);
 await browser.click(purchase.addToCartSearch);
+await browser.checkElement(purchase.preview)
 })
 
 it('Click on proceed to check out', async () => {
@@ -71,7 +73,7 @@ await browser.waitUntilElementIsVisible(purchase.proceed,40000);
 await browser.click(purchase.proceed); 
 })
 
-it('Validate adress summary', async () => {
+it('Validate address summary', async () => {
 await browser.waitUntilElementIsVisible(purchase.processAdress,40000);
 await browser.click(purchase.processAdress); 
 })
@@ -97,6 +99,6 @@ await browser.click(purchase.confirmOrder);
 })})
  
 afterAll ( async() => {
-await driver.quit();
+await Setup.getInstance().quitDriver();
 })
 

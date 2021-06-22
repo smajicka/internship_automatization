@@ -13,6 +13,5 @@ const config = {
       '<rootDir>\\tests\\*.test.ts',
       '<rootDir>/src/**/*.test.tsx',
       'src/.*|(.|/)(.test).tsx?$',
-      "C:\Users\User\Downloads\automatization_internship-main\automatization_internship-main\\tests\\*.test.ts",
-       ],
+      ],
   };

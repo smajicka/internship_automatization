@@ -1,8 +1,8 @@
-import { ElementLocator } from "../element_locator";
+import { ElementLocator } from "../element-locator";
 
-export class Purchasedetails {
+export class PurchaseDetails {
 
-    
+preview = new ElementLocator("class","clearfix");
 proceed = new ElementLocator("class", "btn btn-default standard-checkout button-medium");
 processAdress = new ElementLocator ("name", "processAddress");
 acceptTerms = new ElementLocator ("class", "checker");
