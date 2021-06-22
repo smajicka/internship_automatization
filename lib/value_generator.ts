@@ -1,12 +1,49 @@
-export class Genetaror {
-    
+import { BrowserHelper } from "./browser-helper";
+
+export class Generator {
+
+browser = new BrowserHelper();
+
 async generateMail() {
 let chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
 let mail = '';
+let date: Date = new Date();
+let year = date.getFullYear();
+let month = date.getMonth();
+let day = date.getDay();
+let hour = date.getHours();
+let minute = date.getMinutes();
+let second = date.getSeconds();
+let finalDate = year+"/"+month+"/"+day+"/"+hour+"/"+minute+"/"+second;
+
 for (var i = 0; i < 15; i++) {
 mail += chars[Math.floor(Math.random() * chars.length)];
 }
-return (mail + '@domain.com');
+let email = mail + '@domain.com';
+const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+const csvWriter = createCsvWriter({
+path: "./storedata.cvs",
+header: [
+{id: 'data', title: 'E-mail'}
+]
+});  
+const records = [{data: finalDate+email}];
+await csvWriter.writeRecords(records).then(()=> console.log('The CSV file was written successfully'+year+month+day+hour+minute+second));;
+return email;
+}
+
+async getRegisteredMail(){
+const csv = require('csv-parser');
+const fs = require('fs');
+    
+fs.createReadStream('./storedata.cvs')
+.pipe(csv())
+.on('data', (row:"data") => {
+console.log(row);
+})
+.on('end', () => {
+console.log('CSV file successfully processed');
+});
 }
 
 async generateName() {
