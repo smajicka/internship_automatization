@@ -2,17 +2,21 @@ import {describe, it, beforeAll } from "@jest/globals";
 import {BrowserHelper} from "../lib/browser-helper";
 import {PageObjectFactory} from "../lib/pages/page-object-factory";
 import {Setup} from "../lib/setup";
+import {Generator} from "../lib/value_generator";
 
 let browser = new BrowserHelper();
+let generator = new Generator();
 let pageObj = new PageObjectFactory();
 let homepage = pageObj.getHomePage();
 let myaccountpage = pageObj.getAccountPage();
 let purchase = pageObj.getPurchasePage();
 let object = pageObj.getObjects();
 let set =  Setup.getInstance();
+let mail;
 
 beforeAll ( async () =>{
 await browser.setToPage(set.url);
+mail = await generator.getRegisteredMail();
 });
 
 describe('Click Sign in button at the homepage', () => {
