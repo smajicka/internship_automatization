@@ -2,16 +2,20 @@ import {describe, it, beforeAll } from "@jest/globals";
 import {BrowserHelper} from "../lib/browser-helper";
 import {PageObjectFactory} from "../lib/pages/page-object-factory";
 import {Setup} from "../lib/setup";
+import { Generator } from "../lib/value_generator";
 
 let browser = new BrowserHelper();
 let pageObj = new PageObjectFactory();
+let generator = new Generator();
 let homepage = pageObj.getHomePage();
 let myaccountpage = pageObj.getAccountPage();
 let purchase = pageObj.getPurchasePage();
 let set =  Setup.getInstance();
+let mail;
 
 beforeAll ( async () =>{
 await browser.setToPage(set.url);
+mail = await generator.getRegisteredMail();
 });
 
 describe('Click Sign in button at the homepage', () => {
@@ -24,7 +28,7 @@ await browser.checkUrl(myaccountpage.urlAuthentication);})
 describe('Enter valid data to sign in', () => {
 it('E-mail is sucessfully entered', async () => {
 await browser.waitUntilElementIsVisible(myaccountpage.enterMailOld,40000 );
-await browser.enterText(myaccountpage.enterMailOld, "selma.smajic99@gmail.com"); 
+await browser.enterText(myaccountpage.enterMailOld, mail); 
 await browser.checkText(myaccountpage.enterMail);
 })
 
