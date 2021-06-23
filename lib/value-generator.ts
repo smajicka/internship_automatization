@@ -3,10 +3,9 @@ import { BrowserHelper } from "./browser-helper";
 export class Generator {
 
 browser = new BrowserHelper();
+email: string;
 
 async generateMail() {
-let chars = 'abcdefghijklmnopqrstuvwxyz1234567890';
-let mail = '';
 let date: Date = new Date();
 let year = date.getFullYear();
 let month = date.getMonth();
@@ -15,35 +14,29 @@ let hour = date.getHours();
 let minute = date.getMinutes();
 let second = date.getSeconds();
 let finalDate = year+"/"+month+"/"+day+"/"+hour+"/"+minute+"/"+second;
-
-for (var i = 0; i < 15; i++) {
-mail += chars[Math.floor(Math.random() * chars.length)];
-}
-let email = mail + '@domain.com';
-const createCsvWriter = require('csv-writer').createObjectCsvWriter;
+const createCsvWriter = require("csv-writer").createObjectCsvWriter;
+let email = "sanja@domain.com";
 const csvWriter = createCsvWriter({
-path: "./storedata.cvs",
+path: "./storedata.csv",
 header: [
-{id: 'data', title: 'E-mail'}
+{id: "mail", title: "email"}
 ]
-});  
-const records = [{data: finalDate+email}];
-await csvWriter.writeRecords(records).then(()=> console.log('The CSV file was written successfully'+year+month+day+hour+minute+second));;
-return email;
+});
+const row = [{mail: `${finalDate}${email}`}];
+csvWriter
+.writeRecords(row)
+.then(()=> console.log("The CSV file was written successfully"));
+console.log("email" +row[0].mail);
+this.email = row[0].mail
+return this.email;
 }
 
 async getRegisteredMail(){
-const csv = require('csv-parser');
-const fs = require('fs');
-    
-fs.createReadStream('./storedata.cvs')
-.pipe(csv())
-.on('data', (row:"data") => {
-console.log(row);
-})
-.on('end', () => {
-console.log('CSV file successfully processed');
-});
+const csv = require("csvtojson")
+const csvFilePath = "./storedata.csv"
+const array = await csv().fromFile(csvFilePath);
+console.log("email" +array[0].email.toString())
+return array[0].email.toString();
 }
 
 async generateName() {
@@ -55,6 +48,7 @@ name += chars[Math.floor(Math.random() * chars.length)];
 }
 return (first + name);
 }
+
 async generateZip() {
 let numbers = '0123456789';
 let zip = '';
@@ -82,5 +76,4 @@ address += chars[Math.floor(Math.random() * chars.length)];
 }
 return (first + " " + address + " 11");
 }
-
 }

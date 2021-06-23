@@ -1,7 +1,7 @@
-//import { driver } from "../driver-factory";
 import { Key, until, WebDriver } from "selenium-webdriver"
 import { ElementLocator } from "./element-locator";
-import { Setup } from "./setup";
+import { Setup } from "./set-up";
+import {Generator} from "./value-generator";
 
 export class BrowserHelper {
 
@@ -30,6 +30,13 @@ return await (await elementLocator.getElement()).sendKeys(Key.ENTER);
 
 async enterText(elementLocator: ElementLocator, text: any) {
 return await (await elementLocator.getElement()).sendKeys(text);
+}
+
+async enterMail(elementLocator: ElementLocator) {
+let generator = new Generator();
+let mail : string;
+mail = await generator.getRegisteredMail();
+return await (await elementLocator.getElement()).sendKeys(mail);
 }
   
 async checkText(elementLocator: ElementLocator){
@@ -81,7 +88,7 @@ value = 1;
 value = this.getRandomInt(min, max);
 var iterator = 0;
 while (value < iterator) {
-    this.driver.wait;
+this.driver.wait;
 await (await elementLocator.getElement()).sendKeys(Key.ARROW_DOWN);
 iterator++;
 }

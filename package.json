@@ -8,9 +8,12 @@
   "dependencies": {
     "@jest/globals": "^27.0.3",
     "chromedriver": "^91.0.0",
+    "csv-parser": "^3.0.0",
     "csv-writer": "^1.6.0",
+    "csvtojson": "^2.0.10",
     "file-system": "^1.2.2",
     "js-yaml": "^3.14.1",
+    "moment": "^2.29.1",
     "read-excel-file": "^5.1.0",
     "selenium-webdriver": "^4.0.0-beta.3",
     "ts-xlsx": "^0.0.11",
@@ -44,6 +47,4 @@
   "scripts": {
     "test": "jest --config ./jest.config.js"
   }
-  
-  
 }

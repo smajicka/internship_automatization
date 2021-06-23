@@ -1,75 +1,72 @@
-import {describe, it, beforeAll } from "@jest/globals";
 import {BrowserHelper} from "../lib/browser-helper";
 import {PageObjectFactory} from "../lib/pages/page-object-factory";
-import {Setup} from "../lib/setup";
-import { Generator } from "../lib/value_generator";
+import {Setup} from "../lib/set-up";
+import { Generator } from "../lib/value-generator";
 
 let browser = new BrowserHelper();
-let pageObj = new PageObjectFactory();
+let page = new PageObjectFactory();
 let generator = new Generator();
-let homepage = pageObj.getHomePage();
-let myaccountpage = pageObj.getAccountPage();
-let purchase = pageObj.getPurchasePage();
+let homePage = page.getHomePage();
+let myAccountPage = page.getAccountPage();
+let purchase = page.getPurchasePage();
 let set =  Setup.getInstance();
-let mail;
 
 beforeAll ( async () =>{
 await browser.setToPage(set.url);
-mail = await generator.getRegisteredMail();
 });
 
 describe('Click Sign in button at the homepage', () => {
 it('Sign in and Registration forms dispayed', async () => {
-await browser.waitUntilElementIsVisible(homepage.signButton,40000);
-await browser.click(homepage.signButton);
-await browser.checkUrl(myaccountpage.urlAuthentication);})
+await browser.waitUntilElementIsVisible(homePage.signButton,40000);
+await browser.click(homePage.signButton);
+await browser.checkUrl(myAccountPage.urlAuthentication);})
 })
 
 describe('Enter valid data to sign in', () => {
 it('E-mail is sucessfully entered', async () => {
-await browser.waitUntilElementIsVisible(myaccountpage.enterMailOld,40000 );
-await browser.enterText(myaccountpage.enterMailOld, mail); 
-await browser.checkText(myaccountpage.enterMail);
+await browser.waitUntilElementIsVisible(myAccountPage.enterMailOld,40000 );
+await browser.enterText(myAccountPage.enterMailOld, generator.getRegisteredMail()); 
+await browser.checkText(myAccountPage.enterMail);
 })
 
 it('Password is sucessfully entered', async () => {
-await browser.waitUntilElementIsVisible(myaccountpage.enterPass,40000 );
-await browser.enterText(myaccountpage.enterPass, "pr@ksa27");})
+await browser.waitUntilElementIsVisible(myAccountPage.enterPass,40000 );
+await browser.enterText(myAccountPage.enterPass, "pksa27");})
 })
 
 describe('Click on the Sign in button', () => {
 it('My account page is displayed', async () => {
-await browser.click(myaccountpage.signIn);
-await browser.checkUrl(myaccountpage.url)})
+await browser.click(myAccountPage.signIn);
+await browser.checkUrl(myAccountPage.url)})
 })
 
 describe('Add item to cart using popular section on the homepage', () => {
 it('User is redirected to the homepage', async () => {
-await browser.waitUntilElementIsVisible(myaccountpage.home,4000 );
-await browser.click(myaccountpage.home);
+await browser.waitUntilElementIsVisible(myAccountPage.home,4000 );
+await browser.click(myAccountPage.home);
 await browser.checkUrl(set.url);
 })
 
 it('Popular section is found', async () => {
-await browser.waitUntilElementIsVisible(homepage.popular,4000 );
-await browser.scrollTo(homepage.popular);
+await browser.waitUntilElementIsVisible(homePage.popular,4000 );
+await browser.scrollTo(homePage.popular);
 })
 
 it('Choose item from the popular section', async () => {
-await browser.scrollTo(homepage.itemPopular);
-await browser.waitUntilElementIsVisible(homepage.itemPopular,4000); 
-await browser.hoverOver(homepage.itemPopular);
+await browser.scrollTo(homePage.itemPopular);
+await browser.waitUntilElementIsVisible(homePage.itemPopular,4000); 
+await browser.hoverOver(homePage.itemPopular);
 })
    
 it('Add item to the cart', async () => {
-await browser.waitUntilElementIsVisible(homepage.addToCart,40000 );
-await browser.click(homepage.addToCart);
+await browser.waitUntilElementIsVisible(homePage.addToCart,40000 );
+await browser.click(homePage.addToCart);
 await browser.checkElement(purchase.preview);
 })
 
 it('Click on proceed to check out', async () => {
-await browser.waitUntilElementIsVisible(homepage.proceed,40000 );
-await browser.click(homepage.proceed);
+await browser.waitUntilElementIsVisible(homePage.proceed,40000 );
+await browser.click(homePage.proceed);
 })
 
 it('Validate purchase summary', async () => {
@@ -105,6 +102,5 @@ await browser.click(purchase.confirmOrder);
 })
 
 afterAll ( async() => {
-await Setup.getInstance().quitDriver();
+await set.quitDriver();
 })
-

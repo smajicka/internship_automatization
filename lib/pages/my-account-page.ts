@@ -1,5 +1,5 @@
 import { ElementLocator } from "../element-locator";
-import { Setup } from "../setup";
+import { Setup } from "../set-up";
 
 export class MyAccountPage {
 url = Setup.getInstance().url + "?controller=my-account";

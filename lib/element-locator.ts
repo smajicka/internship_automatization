@@ -1,9 +1,6 @@
 import { By, WebDriver } from 'selenium-webdriver';
 import 'selenium-webdriver/chrome';
-import 'selenium-webdriver/firefox';
-//import { driver } from '../driver-factory';
-import { Setup } from './setup';
-import 'regenerator-runtime/runtime';
+import { Setup } from './set-up';
 
 export class ElementLocator {
 type: string;
@@ -36,6 +33,4 @@ case 'name':
 return By.name(this.locatorId);
 }
 }
-  
-
 }

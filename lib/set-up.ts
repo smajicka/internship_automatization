@@ -35,5 +35,4 @@ this.driver.manage().window().maximize();}
 quitDriver() : void {
 this.driver.quit();
 }
-
 }
