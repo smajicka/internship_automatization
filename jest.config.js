@@ -6,12 +6,6 @@ const config = {
   module.exports = {
      
       testMatch: [
-      '**\\*test.tsx',
-      '**/*test.tsx',
-      'src\\**\\*.test.tsx',
-      'src/**/*.test.tsx',
-      '<rootDir>\\tests\\*.test.ts',
-      '<rootDir>/src/**/*.test.tsx',
-      'src/.*|(.|/)(.test).tsx?$',
+       "**/?(*.)+(spec|test).+(ts|tsx|js)"
       ],
   };
