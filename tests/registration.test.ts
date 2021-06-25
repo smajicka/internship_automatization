@@ -59,7 +59,7 @@ describe('Fill in the registration form', () => {
    
     it('Password is sucesfully entered', async () => {
         await browser.waitUntilElementIsVisible(registrationPage.password,60000);
-        await browser.enterText(registrationPage.password, "pksa27"); 
+        await browser.enterText(registrationPage.password, set.password); 
         await browser.checkText(registrationPage.password);  
     });
    
