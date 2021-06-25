@@ -26,47 +26,9 @@ To install node package manager, in project terminal write:
 ```bash
 npm install
 ```
-### Typescript 
-For typescript execution add following command locally:
-```bash
-npm install -D typescript
-```
-### Jest testing framework 
-To install Jest framework, in project terminal write:
-```bash
-npm install --save-dev jest
-```
-### Selenium Webdriver 
-To install Selenium Webdriver and Chrome Webdriver use following commands:
-```bash
-npm install selenium-webdriver
-npm install chromedriver
-```
-### Babel (JavaScript transcompiler)
-To instal Babel and needed dependencies using following commands:
-```bash
-npm install --save-dev @babel/core 
-```
-All other dependencies needed for babel can be found in the file package.json
-to install them use following approach:
-```bash
-npm install --save-dev @write_name_of_dependency 
-```
-### Yaml 
-To instal Yaml and needed dependencies using following commands:
-```bash
-npm i yaml 
-```
-### CSV files
-To read and write in comma separated value files, it is necessary to add:
-```bash
-npm i csv-writer
-npm i csvtojson
-```
+
 ## How to run tests 
-It is required to run test using cd path: C:\User\automatization_internship-main. 
-Depending where project is saved cd path should be adjusted.
-It is advisable to open project directly in Visual studio, therefore in terminal path will automatically
+It is advisable to open project directly in Visual studio, therefore in terminal cd path will be automatically
 set up. 
 ### All tests 
 If one wants to run entire smoke test suite, it can be done by following command:
