@@ -1,5 +1,5 @@
 import { ElementLocator } from "../element-locator";
-import { Setup } from "../set-up";
+import { Setup } from "../setup";
 
 export class RegistrationPage {
 

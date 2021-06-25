@@ -1,11 +1,5 @@
 enviroment:
 url: http://automationpractice.com/index.php
-browser: chrome
+browser: chrome 
 type: local
-  
-
-
-
-     
-
-
+password: pksa27

@@ -8,15 +8,17 @@ private static instance: Setup;
 
 url: string;
 browser: string;
+password: string;
 driver: WebDriver = null; 
 
 constructor (){
 const fs = require ("fs");
 const yaml = require ("js-yaml");
-const create = yaml.load(fs.readFileSync("./enviroment.yaml"))
+const create = yaml.load(fs.readFileSync("./environment.yaml"))
 
 this.url = create.url;
 this.browser = create.browser;
+this.password = create.password;
 this.newDriver();
 jest.setTimeout(80000);
 }

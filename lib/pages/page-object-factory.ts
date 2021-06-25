@@ -8,22 +8,21 @@ import { Objects } from "./objects";
 export class PageObjectFactory {
             
 getHomePage(){
-return new HomePage();
+    return new HomePage();
 }
 getAccountPage(){
-return new MyAccountPage();
+    return new MyAccountPage();
 }
 getRegistrationPage(){
-return new RegistrationPage();
+    return new RegistrationPage();
 }
 getPurchasePage(){
-return new PurchaseDetails();
+    return new PurchaseDetails();
 }
 getSearchResults(){
-return new SearchResults();
+    return new SearchResults();
 }
 getObjects(){
-return new Objects();
+    return new Objects();
 }
-
 }
