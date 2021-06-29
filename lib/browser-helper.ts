@@ -108,4 +108,20 @@ async checkUrl(url: string){
     const currentUrl = await this.driver.getCurrentUrl();
     expect(url).toEqual(currentUrl); 
 }
+
+async clickTab(elementLocator: ElementLocator){
+    return await (await elementLocator.getElement()).sendKeys(Key.TAB);
+}
+
+async getColor(elementLocator: ElementLocator){
+    var element = await elementLocator.getElement();
+    var color = await element.getCssValue("color").catch();
+    return color;
+}
+
+async checkRedColor(elementLocator: ElementLocator){
+    var presentColor = await this.getColor(elementLocator);
+    const redColor = 'rgba(241, 51, 64, 1)';
+    expect(presentColor).toEqual(redColor);
+}
 }
