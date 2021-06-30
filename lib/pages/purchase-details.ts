@@ -10,7 +10,8 @@ export class PurchaseDetails {
     paymentOptionWire = new ElementLocator ("class", "bankwire");
     confirmOrder = new ElementLocator ("xpath","/html/body/div/div[2]/div/div[3]/div/form/p/button");
     addToCartSearch = new ElementLocator ("class","button ajax_add_to_cart_button btn btn-default");
-    minusButton = new ElementLocator("class","cart_quantity_down btn btn-default button-minus");
+    inputField = new ElementLocator ("class", "cart_quantity_input form-control grey");
+    quantityValue = new ElementLocator ("xpath", "//*[@id='product_1_1_0_0']/td[5]/input[1]");
     firstItem = new ElementLocator("class", "cart_item last_item address_509928 even first_item");
 }
 

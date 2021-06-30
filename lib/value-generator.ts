@@ -35,7 +35,6 @@ async getRegisteredMail(){
     const csv = require("csvtojson")
     const csvFilePath = "./storedata.csv"
     const array = await csv().fromFile(csvFilePath);
-    console.log("email" +array[0].email)
     return array[0].email;
 }
 

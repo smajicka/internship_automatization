@@ -47,6 +47,10 @@ async getValue(elementLocator: ElementLocator) {
     return (await elementLocator.getElement()).getAttribute("value");
 }
 
+async compareValues(valueBefore, valueAfter){
+   return expect(valueAfter).toEqual(valueBefore);
+}
+
 async getText (elementLocator: ElementLocator){
     return (await elementLocator.getElement()).getText();
 }
@@ -123,5 +127,8 @@ async checkRedColor(elementLocator: ElementLocator){
     var presentColor = await this.getColor(elementLocator);
     const redColor = 'rgba(241, 51, 64, 1)';
     expect(presentColor).toEqual(redColor);
+}
+async clear(elementLocator: ElementLocator){
+    return await(await elementLocator.getElement()).clear();
 }
 }

@@ -12,7 +12,6 @@ export class MyAccountPage extends Objects{
     signIn = new ElementLocator ("id", "SubmitLogin");
     home = new ElementLocator ("class","home");    
     authenticationTitle = new ElementLocator ("class", "page-heading");
-    createAccountForm = new ElementLocator("class", "col-xs-12 col-sm-6");
     invalidMailError = new ElementLocator ("id","create_account_error");
 }
 

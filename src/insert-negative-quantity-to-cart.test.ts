@@ -72,14 +72,15 @@ describe('Add item to cart using popular section on the homepage', () => {
         await browser.click(homePage.proceed);
     })
 
-    it('Click on the minus button to decrease quantity', async () => {
-        await browser.waitUntilElementIsVisible(purchase.minusButton,40000);
-        await browser.click(purchase.minusButton); 
+    it('Enter negative quantity to the cart, quantity should not change', async () => {
+        await browser.waitUntilElementIsVisible(purchase.inputField,40000);
+        var valueBefore = await browser.getValue(purchase.inputField);
+        await browser.clear(purchase.inputField); 
+        await browser.enterText(purchase.inputField, "-12");
+        var valueAfter = await browser.getValue(purchase.inputField);
+        await browser.compareValues(valueBefore, valueAfter);
     })
-
-    it('Item is still present in the cart', async () => {
-        await browser.checkElement(purchase.firstItem);
-    })
+   
 })
 
 afterAll ( async() => {

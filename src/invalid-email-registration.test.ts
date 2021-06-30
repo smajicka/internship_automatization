@@ -23,7 +23,7 @@ describe('Enter invalid e-mail under create an account', () => {
     it('Invalid e-mail is recognised, form appears red', async () => {
         await browser.waitUntilElementIsVisible(myAccountPage.enterMail,60000);
         await browser.enterText(myAccountPage.enterMail, "Anytext");   
-        await browser.click(myAccountPage.createAccountForm);
+        await browser.clickTab(myAccountPage.enterMail);
         await browser.checkRedColor(myAccountPage.enterMail);
     })  
 })
