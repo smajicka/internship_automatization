@@ -10,5 +10,4 @@ export class HomePage extends Objects {
     itemBox = new ElementLocator ("class", "clearfix");
     proceed = new ElementLocator("class", "btn btn-default button button-medium");
     searchBar = new ElementLocator ("id","search_query_top");
-    lowerCommercial = new ElementLocator ("class", "htmlcontent-item-2 col-xs-4");
 }
