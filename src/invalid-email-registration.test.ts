@@ -12,7 +12,7 @@ beforeAll ( async () =>{
 });
 
 describe('Click on the Sign in button at the homepage', () => {
-    it('Sign in and Registration forms are dispayed', async () => {
+    it('Sign in and Registration forms are displayed', async () => {
         await browser.waitUntilElementIsVisible(myAccountPage.signButton,60000);
         await browser.click(myAccountPage.signButton);
         await browser.checkUrl(myAccountPage.urlAuthentication);

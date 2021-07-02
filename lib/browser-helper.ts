@@ -1,6 +1,7 @@
 import { Key, until, WebDriver } from "selenium-webdriver"
 import { ElementLocator } from "./element-locator";
 import { Setup } from "./setup";
+import { Generator} from "./value-generator";
 
 export class BrowserHelper {
 
@@ -32,8 +33,8 @@ async enterText(elementLocator: ElementLocator, text: any) {
 }
   
 async checkText(elementLocator: ElementLocator){
-    var text = await this.getText(elementLocator);
-    var recieved : Boolean;
+    let text = await this.getText(elementLocator);
+    let recieved : Boolean;
     recieved= (text != null);
     expect(recieved).toBe(true);
 }
@@ -47,33 +48,23 @@ async getValue(elementLocator: ElementLocator) {
     return (await elementLocator.getElement()).getAttribute("value");
 }
 
-async compareValues(valueBefore, valueAfter){
-   return expect(valueAfter).toEqual(valueBefore);
-}
-
 async getText (elementLocator: ElementLocator){
     return (await elementLocator.getElement()).getText();
 }
     
 async hoverOver(elementLocator: ElementLocator) {
-    var element = await elementLocator.getElement();
-    var mouse = this.driver.actions({async: true});
+    let element = await elementLocator.getElement();
+    let mouse = this.driver.actions({async: true});
     await mouse.move({origin:element}).perform();
 }
 
 async scrollTo (elementLocator: ElementLocator){
-    var element = await elementLocator.getElement();
+    let element = await elementLocator.getElement();
     await this.driver.executeScript('arguments[0].scrollIntoView()', element);
 }
 
-async getRandomInt(min, max) {
-    min = Math.ceil(min);
-    max = Math.floor(max);
-    return Math.floor(Math.random() * (max - min + 1)) + min;
-}
-
 async selectOption(elementLocator: ElementLocator, option) {
-    var value;
+    let value;
     if (option == "state") {
         var min = 1;
         var max = 50;
@@ -81,8 +72,8 @@ async selectOption(elementLocator: ElementLocator, option) {
     else if (option == "country") {
         value = 1;
     }
-    value = this.getRandomInt(min, max);
-    var iterator = 0;
+    value = this.generator.getRandomInt(min, max);
+    let iterator = 0;
     while (value < iterator) {
     this.driver.wait;
     await (await elementLocator.getElement()).sendKeys(Key.ARROW_DOWN);
@@ -118,13 +109,13 @@ async clickTab(elementLocator: ElementLocator){
 }
 
 async getColor(elementLocator: ElementLocator){
-    var element = await elementLocator.getElement();
-    var color = await element.getCssValue("color").catch();
+    let element = await elementLocator.getElement();
+    let color = await element.getCssValue("color").catch();
     return color;
 }
 
 async checkRedColor(elementLocator: ElementLocator){
-    var presentColor = await this.getColor(elementLocator);
+    let presentColor = await this.getColor(elementLocator);
     const redColor = 'rgba(241, 51, 64, 1)';
     expect(presentColor).toEqual(redColor);
 }

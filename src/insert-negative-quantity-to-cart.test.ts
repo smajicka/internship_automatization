@@ -12,11 +12,11 @@ let purchase = page.getPurchasePage();
 let set =  Setup.getInstance();
 
 beforeAll ( async () =>{
-await browser.setToPage(set.url);
+    await browser.setToPage(set.url);
 });
 
 describe('Click Sign in button at the homepage', () => {
-    it('Sign in and Registration forms dispayed', async () => {
+    it('Sign in and Registration forms displayed', async () => {
         await browser.waitUntilElementIsVisible(homePage.signButton,40000);
         await browser.click(homePage.signButton);
         await browser.checkUrl(myAccountPage.urlAuthentication);
@@ -78,7 +78,7 @@ describe('Add item to cart using popular section on the homepage', () => {
         await browser.clear(purchase.inputField); 
         await browser.enterText(purchase.inputField, "-12");
         var valueAfter = await browser.getValue(purchase.inputField);
-        await browser.compareValues(valueBefore, valueAfter);
+        expect(valueAfter).toEqual(valueBefore);
     })
    
 })
