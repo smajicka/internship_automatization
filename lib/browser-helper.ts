@@ -5,6 +5,7 @@ import { Generator} from "./value-generator";
 
 export class BrowserHelper {
 
+generator: Generator;
 driver: WebDriver;
 constructor(){
 this.driver = Setup.getInstance().driver
