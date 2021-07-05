@@ -1,7 +1,8 @@
 import { ElementLocator } from "../element-locator";
 import { Setup } from "../setup";
+import { Objects } from "./objects";
 
-export class MyAccountPage {
+export class MyAccountPage extends Objects{
     url = Setup.getInstance().url + "?controller=my-account";
     urlAuthentication = Setup.getInstance().url + "?controller=authentication&back=my-account";
     enterMail = new ElementLocator("id",'email_create');
@@ -10,6 +11,7 @@ export class MyAccountPage {
     enterPass = new ElementLocator ("id", "passwd");
     signIn = new ElementLocator ("id", "SubmitLogin");
     home = new ElementLocator ("class","home");    
-    authenticationTitle = new ElementLocator ("class", "page-heading")
+    authenticationTitle = new ElementLocator ("class", "page-heading");
+    invalidMailError = new ElementLocator ("id","create_account_error");
 }
 

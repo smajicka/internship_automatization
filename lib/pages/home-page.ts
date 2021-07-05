@@ -1,6 +1,7 @@
 import { ElementLocator } from "../element-locator";
+import { Objects } from "./objects";
 
-export class HomePage {
+export class HomePage extends Objects {
     popular = new ElementLocator("class","homefeatured");
     itemPopular = new  ElementLocator("xpath", "//*[@id='homefeatured']/li[1]/div/div[1]");
     slideShow = new ElementLocator ("class","bx-viewport");
@@ -9,7 +10,4 @@ export class HomePage {
     itemBox = new ElementLocator ("class", "clearfix");
     proceed = new ElementLocator("class", "btn btn-default button button-medium");
     searchBar = new ElementLocator ("id","search_query_top");
-    upperCommerical = new ElementLocator("class", "htmlcontent-item-1 col-xs-4");
-    lowerCommercial = new ElementLocator ("class", "htmlcontent-item-2 col-xs-4");
-    signButton = new ElementLocator("class", "header_user_info");
 }

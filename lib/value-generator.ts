@@ -35,7 +35,6 @@ async getRegisteredMail(){
     const csv = require("csvtojson")
     const csvFilePath = "./storedata.csv"
     const array = await csv().fromFile(csvFilePath);
-    console.log("email" +array[0].email)
     return array[0].email;
 }
 
@@ -75,5 +74,10 @@ async generateAdress() {
             address += chars[Math.floor(Math.random() * chars.length)];
         }   
     return (first + " " + address + " 11");
+}
+async getRandomInt(min, max) {
+    min = Math.ceil(min);
+    max = Math.floor(max);
+    return Math.floor(Math.random() * (max - min + 1)) + min;
 }
 }
