@@ -1,0 +1,231 @@
+{ 
+	"info": {
+		"_postman_id": "2f6ceac5-7e58-4535-9298-876ecb9acd28",
+		"name": "JsonPlaceholderSmokeTest",
+		"description": "API testing for JsonPlaceholder",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+		
+	},
+	"item": [
+		{
+			"name": "{{url}}/users",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Verify user\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.above(10);\r",
+							"});\r",
+							"pm.test(\"Verify name\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.name).to.eql(\"Selma\");\r",
+							"});\r",
+							"pm.test(\"Verify username\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.username).to.eql(\"Flowerist38\");\r",
+							"});\r",
+							"pm.test(\"Verify email\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.email).to.eql(\"flowerist38@gmail.com\");\r",
+							"});\r",
+							"pm.test(\"Verify phone\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.phone).to.eql(\"2223021\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"id\": {{userId}},\r\n    \"name\": \"Selma\",\r\n    \"username\": \"Flowerist38\",\r\n    \"email\": \"flowerist38@gmail.com\",\r\n    \"address\": {\r\n        \"street\": \"Antuna Hangija 32\",\r\n        \"city\": \"Sarajevo\",\r\n        \"zipcode\": \"71000\"\r\n    },\r\n        \"phone\": \"2223021\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users"
+					]
+				},
+				"description": "Test to create new user"
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/posts",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Verify user\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.userId).to.equal(11);\r",
+							"});\r",
+							"pm.test(\"Verify id\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.above(100);\r",
+							"});\r",
+							"pm.test(\"Verify title\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.title).to.eql(\"Tips to grow perfect peonies\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{ \r\n    \"userId\": {{userId}},\r\n    \"id\": {{postId}},\r\n    \"title\": \"Tips to grow perfect peonies\",\r\n    \"body\": \"Peonies prefer a sunny location with well-drained soil. Good air circulation around the plant is also important. These growing conditions help peonies avoid their only serious disease problem: botrytis. Like other fungal diseases, botrytis is present in most soils.\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/posts",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"posts"
+					]
+				},
+				"description": "Test to create new post"
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/albums",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Verify user\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.userId).to.equal(11);\r",
+							"});\r",
+							"pm.test(\"Verify id of the album\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.above(100);\r",
+							"});\r",
+							"pm.test(\"Verify title of the album\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.title).to.eql(\"Flowers\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": {{userId}},\r\n    \"id\": {{albumId}},\r\n    \"title\": \"Flowers\"\r\n}\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/albums",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"albums"
+					]
+				},
+				"description": "Test to create an album"
+			},
+			"response": []
+		},
+		{
+			"name": "{{url}}/todos",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 201\", function () {\r",
+							"    pm.response.to.have.status(201);\r",
+							"});\r",
+							"pm.test(\"Verify user\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.userId).to.equal(11);\r",
+							"});\r",
+							"pm.test(\"Verify id of to-do\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.id).to.above(200);\r",
+							"});\r",
+							"pm.test(\"Verify title of to-do\", function () {\r",
+							"    var jsonData = pm.response.json();\r",
+							"    pm.expect(jsonData.title).to.eql(\"Water the peonies\");\r",
+							"});\r",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"userId\": {{userId}},\r\n    \"id\": {{toDoId}},\r\n    \"title\": \"Water the peonies\",\r\n    \"completed\": false\r\n}\r\n\r\n",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/todos",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"todos"
+					]
+				},
+				"description": "Test to create a to-do"
+			},
+			"response": []
+		}
+	]
+}
