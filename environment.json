@@ -4,7 +4,7 @@
 	"values": [
 		{
 			"key": "url",
-			"value": "https://jsonplaceholder.typicode.com",
+			"value": "jsonplaceholder.typicode.com",
 			"enabled": true
 		},
 		{
