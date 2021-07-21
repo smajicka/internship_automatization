@@ -17,7 +17,7 @@ beforeAll ( async () =>{
 
 describe('Click on the Sign in button at the homepage', () => {
     it('Sign in and Registration forms are dispayed', async () => {
-        await browser.waitUntilElementIsVisible(homePage.signButton,60000);
+        await browser.waitUntilElementIsVisible(homePage.signButton,70000);
         await browser.click(homePage.signButton);
         await browser.checkUrl(myAccountPage.urlAuthentication);
     })
@@ -25,7 +25,7 @@ describe('Click on the Sign in button at the homepage', () => {
 
 describe('Enter e-mail to start the registration process', () => {
     it('E-mail is sucessfully entered', async () => {
-        await browser.waitUntilElementIsVisible(myAccountPage.enterMail,60000);
+        await browser.waitUntilElementIsVisible(myAccountPage.enterMail,70000);
         await browser.enterText(myAccountPage.enterMail, await generator.generateMail());   
         await browser.checkText(myAccountPage.enterMail);
     })
@@ -34,14 +34,14 @@ describe('Enter e-mail to start the registration process', () => {
 describe('Click on the Register button', () => {
     it('Registration page is displayed', async () => {
         await browser.click(myAccountPage.createAccount);
-        await browser.waitUntilElementIsVisible(registrationPage.registrationForm,60000);
+        await browser.waitUntilElementIsVisible(registrationPage.registrationForm,70000);
         await browser.checkUrl(registrationPage.urlCreation);
     });
 });
 
 describe('Fill in the registration form', () => {
     it('Title is chosen', async () => {
-        await browser.waitUntilElementIsVisible(registrationPage.genderFemale,60000);
+        await browser.waitUntilElementIsVisible(registrationPage.genderFemale,70000);
         await browser.click(registrationPage.genderFemale);  
     });
 
@@ -58,7 +58,7 @@ describe('Fill in the registration form', () => {
     });
    
     it('Password is sucesfully entered', async () => {
-        await browser.waitUntilElementIsVisible(registrationPage.password,60000);
+        await browser.waitUntilElementIsVisible(registrationPage.password,70000);
         await browser.enterText(registrationPage.password, set.password); 
         await browser.checkText(registrationPage.password);  
     });
