@@ -1,3 +1,4 @@
+import { SSL_OP_NO_TLSv1_1 } from "constants";
 import { Key, until, WebDriver } from "selenium-webdriver"
 import { ElementLocator } from "./element-locator";
 import { Setup } from "./setup";
@@ -73,7 +74,7 @@ async selectOption(elementLocator: ElementLocator, option) {
     else if (option == "country") {
         value = 1;
     }
-    value = this.generator.getRandomInt(min, max);
+    value = 1;
     let iterator = 0;
     while (value < iterator) {
     this.driver.wait;
