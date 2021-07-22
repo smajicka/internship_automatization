@@ -68,8 +68,7 @@ async scrollTo (elementLocator: ElementLocator){
 async selectOption(elementLocator: ElementLocator, option) {
     let value;
     if (option == "state") {
-        var min = 1;
-        var max = 50;
+        value == 2
     }
     else if (option == "country") {
         value = 1;
