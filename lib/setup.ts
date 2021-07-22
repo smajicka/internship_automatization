@@ -20,7 +20,7 @@ export class Setup{
         this.browser = create.browser;
         this.password = create.password;
         this.newDriver();
-        jest.setTimeout(80000);
+        jest.setTimeout(600000);
     }
 
     public static getInstance(): Setup {

@@ -1,3 +1,4 @@
+import { SSL_OP_NO_TLSv1_1 } from "constants";
 import { Key, until, WebDriver } from "selenium-webdriver"
 import { ElementLocator } from "./element-locator";
 import { Setup } from "./setup";
@@ -67,13 +68,12 @@ async scrollTo (elementLocator: ElementLocator){
 async selectOption(elementLocator: ElementLocator, option) {
     let value;
     if (option == "state") {
-        var min = 1;
-        var max = 50;
+        value == 2
     }
     else if (option == "country") {
         value = 1;
     }
-    value = this.generator.getRandomInt(min, max);
+    value = 1;
     let iterator = 0;
     while (value < iterator) {
     this.driver.wait;
